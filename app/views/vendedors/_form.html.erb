@@ -1,0 +1,46 @@
+<%= form_with(model: vendedor) do |form| %>
+  <% if vendedor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(vendedor.errors.count, "error") %> prohibited this vendedor from being saved:</h2>
+
+      <ul>
+        <% vendedor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :mail, style: "display: block" %>
+    <%= form.text_field :mail %>
+  </div>
+
+  <div>
+    <%= form.label :amount, style: "display: block" %>
+    <%= form.number_field :amount %>
+  </div>
+
+    <div>
+    <%= form.label :oficina_id, style: "display: block" %>
+      <%= form.collection_select :office_id, Office.all, :id, :name, prompt: 'Seleccionar oficina' %>
+  </div>
+
+    <div>
+    <%= form.label :manager_id, style: "display: block" %>
+    <%= form.collection_select :manager_id, Manager.all, :id, :name, prompt: 'Seleccionar manager' %>
+  </div>
+
+
+
+
+  <hr>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

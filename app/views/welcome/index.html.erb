@@ -1,0 +1,67 @@
+<h1>Gestión de vendedores</h1>
+<hr>
+
+<%= form_with url: welcome_index_path, method: :get do |form| %>
+  <div class="form-row">
+      <%= form.text_field :texto_a_buscar, class: "form-control", placeholder: "Buscar por nombre", onChange: "this.form.requestSubmit()", value: params[:texto_a_buscar] %>
+        <div class="form-group">
+      <br>
+      <%= form.submit "Buscar", class: "btn btn-primary" %>
+  </div>
+  </div>
+<%end %>
+
+
+<hr>
+
+<hr>
+
+<%= form_with url: welcome_index_path, method: :get do |form2| %>
+  <div class="form-row">
+      <!--En este select_tag que esta en el formulario, la variable que se pasara se llama manager_a_buscar y se mostrara el nombre, pero se pasara el id -->
+      <h4>Seleccione Administrador: </h4><%= form2.select :manager_a_buscar, options_for_select(Manager.pluck(:name, :id)), value: params[:manager_a_buscar], include_blank: true, class: "form-select"  %>
+        <div class="form-group">
+      <br>
+      <%= form2.submit "Buscar2", class: "btn btn-primary" %>
+  </div>
+  </div>
+<%end %>
+
+<hr>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Ventas</th>
+      <th scope="col">Oficina</th>
+      <th scope="col">Administrador</th>
+      <th scope="col">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @vendedors.each do |vendedor| %>
+    <tr>
+      <th scope="row"><%= vendedor.id %></th>
+      <td><%= vendedor.name %></td>
+      <td><%= vendedor.mail %></td>
+      <td><%= vendedor.amount %></td>
+      <td><%= vendedor.office.name %></td>
+      <td><%= vendedor.manager.name %></td>
+      <td><%= link_to "Editar", edit_vendedor_path(vendedor), :class => "btn btn-primary" %></td>
+    
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<hr>
+<div>
+  <%= pagy_bootstrap_nav(@pagy).html_safe if @pagy.pages >= 1 %>
+  <%== pagy_info(@pagy) if @pagy.pages >= 1 %>
+</div>
+
+
+
+
