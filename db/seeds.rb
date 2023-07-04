@@ -5,4 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-require “faker”
+
+require 'faker'
+
+Manager.create([{name: "Rosa Vallejos"}, {name: "Abner Jaramillo"}, {name: "Ester olivas"}])
+Office.create([{name: "La florida", address: "Vicuña mackenna 1515"}, {name: "til Til", address: "Camino sin numero"}, {name: "Las Condes", address: "Estoril 1833"}])
+

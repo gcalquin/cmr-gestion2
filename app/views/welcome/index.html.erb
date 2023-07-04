@@ -28,6 +28,35 @@
 <%end %>
 
 <hr>
+<h4>--</h4>
+<h4>Metodo de busqueda anidado</h4>
+
+<br>
+<form action="/welcome/index" method="get">
+  <div>
+  <select class= "form-select" name= "office_id" id="office_id">
+    <option value="-1" selected >Seleccione una oficina</option>
+    <% @offices.each do |office| %>
+        <option value="<%= office.id %>"> <%= office.id %> - <%= office.name %> </option>
+      <% end %>
+    </select>
+  </div>
+  <br>
+  <div>
+  <select class= "form-select" name= "manager_id" id="manager_id">
+    <option value="-1" selected >Seleccione un manager</option>
+    <% @managers.each do |manager| %>
+        <option value="<%= manager.id %>"> <%= manager.id %> - <%= manager.name %> </option>
+      <% end %>
+    </select>
+  </div>
+  <br>
+  <button type= "submit" class="btn btn-primary">Buscar</button>
+  </form>
+</br>
+
+
+<h4>--</h4>
 
 <table class="table">
   <thead>

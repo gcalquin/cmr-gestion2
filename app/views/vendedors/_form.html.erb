@@ -12,13 +12,13 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, style: "display: block", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :mail, style: "display: block" %>
-    <%= form.text_field :mail %>
+    <%= form.label :mail, style: "display: block", class: "form-label" %>
+    <%= form.text_field :mail, class: "form-control" %>
   </div>
 
   <div>
@@ -26,14 +26,17 @@
     <%= form.number_field :amount %>
   </div>
 
-    <div>
-    <%= form.label :oficina_id, style: "display: block" %>
-      <%= form.collection_select :office_id, Office.all, :id, :name, prompt: 'Seleccionar oficina' %>
-  </div>
 
     <div>
-    <%= form.label :manager_id, style: "display: block" %>
-    <%= form.collection_select :manager_id, Manager.all, :id, :name, prompt: 'Seleccionar manager' %>
+    <%= form.label :oficina_id, style: "display: block", :class => "form-label" %>
+      <%= form.collection_select :office_id, Office.all.order(name: :asc), :id, :name,  { prompt: "Seleccione Oficina" }, { class: "form-control mb-2 mr-sm-2" }
+      %>
+    </div>
+
+
+    <div>
+    <%= form.label :manager_id, style: "display: block", :class => "form-label" %>
+    <%= form.collection_select :manager_id, Manager.all.order(name: :asc), :id, :name, { prompt: "Seleccione Administrador" }, { class: "form-control mb-2 mr-sm-2" } %>
   </div>
 
 
@@ -41,6 +44,6 @@
 
   <hr>
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
